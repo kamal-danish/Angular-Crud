@@ -7,14 +7,16 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
-import { ModalModule } from 'ngx-bootstrap/modal'
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
