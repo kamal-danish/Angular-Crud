@@ -12,21 +12,20 @@ myForms:FormGroup
 
   ngOnInit() {
     this.myForms = this.fb.group({
-      phone:this.fb.array([])
+      phones:this.fb.array([]),
     })
-   
   }
-  get phoneForms(){
-    return this.myForms.get('phone') as FormArray
-      
-    }
-    addPhone(){
-      const phones=this.fb.group({
-prefix:[]
-      })
-      this.phoneForms.push(phones)
-    }
-    detete(i){
-      this.phoneForms.removeAt(i)
-    }
+  get PhoneForms(){
+    return this.myForms.get('phones') as FormArray
+  }
+  addPhone(){
+    const phone = this.fb.group({
+      prefix:[],
+      email:[],
+    })
+    this.PhoneForms.push(phone)
+  }
+  deletePhone(i){
+    this.PhoneForms.removeAt(i)
+  }
 }
