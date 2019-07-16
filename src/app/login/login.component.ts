@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup,Validators} from '@angular/forms'
+import { Component, OnInit,EventEmitter } from '@angular/core';
+import { FormBuilder,FormGroup,Validators} from '@angular/forms';
+import{Router} from '@angular/router';
+import { SharedService } from '../shared.service';
+
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,11 @@ import { FormBuilder,FormGroup,Validators} from '@angular/forms'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-myForm:FormGroup
+  myForm:FormGroup
+  onAdd = new EventEmitter();
 submitted=false;
-  constructor(private fb:FormBuilder) { }
+  email: any;
+  constructor(private fb:FormBuilder,private router:Router,public shared:SharedService) { }
 
   ngOnInit() {
     this.createForm();
@@ -28,5 +33,10 @@ submitted=false;
     if(this.myForm.invalid){
       return;
     }
+ this.email = this.myForm.value.email
+// this.onAdd.emit(this.email);
+this.router.navigate(['user'],{ queryParams: { order: this.email } });
+
+    
   }
 }

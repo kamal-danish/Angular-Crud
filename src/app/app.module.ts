@@ -23,7 +23,7 @@ import { ModalModule } from 'ngx-bootstrap/modal'
     FormsModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

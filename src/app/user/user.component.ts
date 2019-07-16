@@ -1,6 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms'
+import { SharedService } from '../shared.service';
+import { LoginComponent } from '../login/login.component';
+import { Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -16,11 +19,20 @@ export class UserComponent implements OnInit {
   userForm: FormGroup
   modalRef: BsModalRef;
   myValue: any;
-  constructor(private modalService: BsModalService, private fb: FormBuilder) { }
+  constructor(private modalService: BsModalService, 
+    private fb: FormBuilder,
+    public login:LoginComponent,
+    public route:ActivatedRoute) { }
 
 
   ngOnInit() {
+    this.route.queryParams.subscribe((param=>{
+      console.log(param)
+    }))
     this.createForm();
+    // this.login.onAdd.subscribe((data=>{
+    //   console.log(data,'data')
+    // }))
   }
   createForm() {
     this.userForm = this.fb.group({
