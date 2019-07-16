@@ -1,0 +1,89 @@
+
+<div class="container">
+    <div class="row">
+           
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" (click)="openModal(template)">Add</button>
+                
+    </div>
+</div>
+<br>
+<div class="container">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userDetails;index as i">
+            <td>{{i+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.mobile}}</td>
+           
+            <td>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" (click)="edituserDetails(template,i)">Edit</button>
+            </td>
+            <td>
+                <button class="btn btn-lg btn-primary btn-block btn-signin">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add User</h4>
+        <h4 class="modal-title pull-left" *ngIf="update">Update User</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+            <div class="container">
+                    <div class="card card-container">
+                        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                        <p id="profile-name" class="profile-name-card"></p>
+                        <form class="form-signin" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                            <span id="reauth-email" class="reauth-email"></span>
+                
+                            <input type="text" id="inputName"  class="form-control" placeholder="Name" [(ngModel)]="user2.name" formControlName="name"
+                                [ngClass]="{'is-invalid':submitted && f.name.errors}">
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Name required</div>
+                            </div>
+                
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" [(ngModel)]="user2.email" formControlName="email"
+                                [ngClass]="{'is-invalid':submitted && f.email.errors}">
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is Required</div>
+                                <!-- <div *ngIf="f.email.errors.email">Must be valid email</div> -->
+                                <div *ngIf="f.email.errors.pattern">Must be valid</div>
+                            </div>
+                            <input type="text" id="inputAddress" class="form-control" placeholder="Address" [(ngModel)]="user2.address"
+                                formControlName="address" [ngClass]="{'is-invalid':submitted && f.address.errors}">
+                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                <div *ngIf="f.address.errors.required">Address required</div>
+                            </div>
+
+                            <input type="text" id="inputMobile" class="form-control" placeholder="Mobile" [(ngModel)]="user2.mobile"
+                            formControlName="mobile"  [ngClass]="{'is-invalid':submitted && f.mobile.errors}">
+                        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobile.errors.required">Mobile required</div>
+                           
+                        </div>
+                
+                            <button class="btn btn-lg btn-primary btn-block btn-signin" *ngIf="!update" type="submit">Register</button>
+                            
+                        </form><!-- /form -->
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" *ngIf="update" (click)="updateUserDetails()">Update</button>
+                   
+                    </div><!-- /card-container -->
+                </div><!-- /container -->
+    </div>
+</ng-template>

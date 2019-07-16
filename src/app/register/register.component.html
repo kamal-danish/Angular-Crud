@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="card card-container">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <span id="reauth-email" class="reauth-email"></span>
+
+            <input type="text" id="inputName" class="form-control" placeholder="Name" formControlName="name"
+                [ngClass]="{'is-invalid':submitted && f.name.errors}">
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">Name required</div>
+            </div>
+
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email"
+                [ngClass]="{'is-invalid':submitted && f.email.errors}">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is Required</div>
+                <!-- <div *ngIf="f.email.errors.email">Must be valid email</div> -->
+                <div *ngIf="f.email.errors.pattern">Must be valid</div>
+            </div>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                formControlName="password" [ngClass]="{'is-invalid':submitted && f.password.errors}">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password required</div>
+                <div *ngIf="f.password.errors.minlength">Minimum 8 char</div>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
+        </form><!-- /form -->
+    </div><!-- /card-container -->
+</div><!-- /container -->
