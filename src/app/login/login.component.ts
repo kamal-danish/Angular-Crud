@@ -34,8 +34,9 @@ submitted=false;
       return;
     }
  this.email = this.myForm.value.email
+ localStorage.setItem('currentUser',this.email)
 // this.onAdd.emit(this.email);
-this.router.navigate(['user'],{ queryParams: { order: this.email } });
+this.router.navigate(['user'],{ queryParams: { id: this.email } });
 
     
   }
