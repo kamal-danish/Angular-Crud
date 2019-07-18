@@ -8,7 +8,9 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './child/child.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ProfileComponent } from './profile/profile.component'
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    ProfileComponent
+    ProfileComponent,
+    ParentComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,
