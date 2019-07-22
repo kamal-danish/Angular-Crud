@@ -10,7 +10,8 @@ import { UserComponent } from './user/user.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ProfileComponent } from './profile/profile.component';
 import { ParentComponent } from './parent/parent.component';
-import { ChildComponent } from './child/child.component'
+import { ChildComponent } from './child/child.component';
+import { ParentDirective } from './parent.directive'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ChildComponent } from './child/child.component'
     UserComponent,
     ProfileComponent,
     ParentComponent,
-    ChildComponent
+    ChildComponent,
+    ParentDirective
   ],
   imports: [
     BrowserModule,
