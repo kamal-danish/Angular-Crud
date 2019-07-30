@@ -11,7 +11,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ProfileComponent } from './profile/profile.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
-import { ParentDirective } from './parent.directive'
+import { ParentDirective } from './parent.directive';
+import { AsyncPipeComponent } from './async-pipe/async-pipe.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ParentDirective } from './parent.directive'
     ProfileComponent,
     ParentComponent,
     ChildComponent,
-    ParentDirective
+    ParentDirective,
+    AsyncPipeComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
+import { AsyncPipeComponent } from './async-pipe/async-pipe.component';
 
 
 const routes: Routes = [{
@@ -24,6 +25,8 @@ const routes: Routes = [{
     path:'parent',component:ParentComponent
   },{
     path:'child',component:ChildComponent
+  },{
+    path:'async',component:AsyncPipeComponent
   }
 ];
 
