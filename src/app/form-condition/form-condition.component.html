@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 style="text-align: center">Form Condition</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" (click)="formCheck($event)">
+                    <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                </div>
+            </div>
+            <form [formGroup]="formCondition" (ngSubmit)="onSubmit()" nonValidate>
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01" formControlName="optionVal"
+                            (change)="onChange($event)" [ngClass]="{'is-invalid':submitted && f.optionVal.errors}">
+                            <option [disabled]="true" [value]="0">Select</option>
+                            <option *ngFor="let category of communities;index as i">
+                                {{category.name}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.optionVal.errors" class="invalid-feedback">
+                            <div *ngIf="f.optionVal.errors.required">
+                                Select Category
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputCategory">Category Name</label>
+                        <input type="text" class="form-control" id="exampleInputCategory" placeholder="Enter Category"
+                            formControlName="categoryName"
+                            [ngClass]="{'is-invalid':submitted && f.categoryName.errors}">
+                        <div *ngIf="submitted && f.categoryName.errors" class="invalid-feedback">
+                            <div *ngIf="f.categoryName.errors.required">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPhone">Mobile Number</label>
+                        <input type="number" class="form-control" id="exampleInputPhone" placeholder="Enter Mobile Number"
+                            formControlName="mobileNumber"
+                            [ngClass]="{'is-invalid':submitted && f.mobileNumber.errors}">
+                        <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobileNumber.errors.required">
+                                Please Enter Mobile Number
+                            </div>
+                            <div *ngIf="f.mobileNumber.errors.pattern">
+                                Please Enter Valid Number
+                            </div>
+                           
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="form-inline" style="padding-top: 15px;">
+                        <i class="fa fa-plus-square" aria-hidden="true" (click)="addPhoneNumber()" data-toggle="tooltip"
+                            title="Add Alternate" data-placement="right" style="cursor:pointer" *ngIf="!formVal"></i>
+                    </div>
+
+                    <div formArrayName="telephoneNumber">
+                        <div *ngFor="let mobileNumber of contactNumber.controls;let i = index;" [formGroupName]="i">
+                            <div class="form-group">
+                                <label for="phone">Alt Phone:</label>
+                                <input type="text" class="form-control" formControlName="altPhone">
+                                <i class="fa fa-trash-o" aria-hidden="true" (click)="deletePhone(i)"
+                                    data-toggle="tooltip" title="Delete Alternate Number" data-placement="right"
+                                    style="cursor:pointer"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-outline-success" [disabled]="button" data-toggle="tooltip"
+                    title="Add Details" data-placement="right" style="cursor:pointer">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

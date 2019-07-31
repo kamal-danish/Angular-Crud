@@ -8,6 +8,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { AsyncPipeComponent } from './async-pipe/async-pipe.component';
+import { FormConditionComponent } from './form-condition/form-condition.component';
 
 
 const routes: Routes = [{
@@ -27,6 +28,8 @@ const routes: Routes = [{
     path:'child',component:ChildComponent
   },{
     path:'async',component:AsyncPipeComponent
+  },{
+    path:'form',component:FormConditionComponent
   }
 ];
 

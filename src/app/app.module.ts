@@ -12,7 +12,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { ParentDirective } from './parent.directive';
-import { AsyncPipeComponent } from './async-pipe/async-pipe.component'
+import { AsyncPipeComponent } from './async-pipe/async-pipe.component';
+import { FormConditionComponent } from './form-condition/form-condition.component'
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { AsyncPipeComponent } from './async-pipe/async-pipe.component'
     ParentComponent,
     ChildComponent,
     ParentDirective,
-    AsyncPipeComponent
+    AsyncPipeComponent,
+    FormConditionComponent
   ],
   imports: [
     BrowserModule,
