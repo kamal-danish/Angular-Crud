@@ -33,11 +33,14 @@
                     <div class="form-group">
                         <label for="exampleInputCategory">Category Name</label>
                         <input type="text" class="form-control" id="exampleInputCategory" placeholder="Enter Category"
-                            formControlName="categoryName"
+                            formControlName="categoryName" maxlength="10"
                             [ngClass]="{'is-invalid':submitted && f.categoryName.errors}">
                         <div *ngIf="submitted && f.categoryName.errors" class="invalid-feedback">
                             <div *ngIf="f.categoryName.errors.required">
                                 Required
+                            </div>
+                            <div *ngIf="f.categoryName.errors.pattern">
+                                Required Val
                             </div>
                         </div>
                     </div>
@@ -58,19 +61,31 @@
                         </div>
                     </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;
+                    <!-- <div class="form-inline" style="padding-top: 15px;">
+                        <i class="fa fa-plus-square" aria-hidden="true" (click)="addPhoneNumber()" data-toggle="tooltip"
+                            title="Add Alternate" data-placement="right" style="cursor:pointer" *ngIf="!formVal" ></i>
+                    </div> -->
                     <div class="form-inline" style="padding-top: 15px;">
                         <i class="fa fa-plus-square" aria-hidden="true" (click)="addPhoneNumber()" data-toggle="tooltip"
-                            title="Add Alternate" data-placement="right" style="cursor:pointer" *ngIf="!formVal"></i>
+                            title="Add Alternate" data-placement="right" style="cursor:pointer" *ngIf="!formVal && !addButtonDisable"></i>
                     </div>
-
+                    
                     <div formArrayName="telephoneNumber">
-                        <div *ngFor="let mobileNumber of contactNumber.controls;let i = index;" [formGroupName]="i">
+                        <div *ngFor="let mobileNumber of contactNumber.controls;let i = index;let first=first; let last=last;" [formGroupName]="i">
                             <div class="form-group">
                                 <label for="phone">Alt Phone:</label>
-                                <input type="text" class="form-control" formControlName="altPhone">
+                                <input type="text" class="form-control" formControlName="altPhone" [ngClass]="{'is-invalid':submitted && f.altPhone.errors}">
                                 <i class="fa fa-trash-o" aria-hidden="true" (click)="deletePhone(i)"
                                     data-toggle="tooltip" title="Delete Alternate Number" data-placement="right"
                                     style="cursor:pointer"></i>
+                                 <div *ngIf="submitted && f.altPhone.errors" class="invalid-feedback">
+                                     <div *ngIf="f.altPhone.errors.required">
+                                         Please Enter Alternate Number
+                                     </div>
+                                     <div *ngIf="f.altPhone.errors.pattern">
+                                         Please Enter Valid Number
+                                     </div>
+                                 </div>   
                             </div>
                         </div>
                     </div>

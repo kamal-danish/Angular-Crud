@@ -20,7 +20,7 @@ export class FormConditionComponent implements OnInit {
     { id: 2, name: "Sikh" },
     { id: 3, name: "Budh" },
     { id: 4, name: "Zoroas(Parsis)" },
-    {id:5, name:"NA"}
+    { id:5, name:"NA"}
 ];
 
 
@@ -28,11 +28,9 @@ export class FormConditionComponent implements OnInit {
   formVal: boolean = true;
   submitted: boolean=false;
   button: boolean;
+  addButtonDisable: boolean;
 
-  constructor(private fb: FormBuilder,
-  ) {
-    
-   }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.createForm();
@@ -43,7 +41,7 @@ export class FormConditionComponent implements OnInit {
   createForm() {
     this.formCondition = this.fb.group({
       optionVal: ['', Validators.required],
-      categoryName: ['', Validators.required],
+      categoryName: ['', [Validators.required,Validators.pattern('^[a-zA-Z ]*$')]],
       mobileNumber:['',[Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       telephoneNumber:this.fb.array([]),
     })
@@ -59,13 +57,22 @@ export class FormConditionComponent implements OnInit {
 
   addPhoneNumber(){
     const phoneNumber = this.fb.group({
-      altPhone:['',Validators.required]
+      altPhone:['',[Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]]
     });
     this.contactNumber.push(phoneNumber);
+    if(this.contactNumber.length == 3){
+      this.addButtonDisable=true;
+    }else{
+      this.addButtonDisable=false;
+    }
+    
   }
 
   deletePhone(i){
     this.contactNumber.removeAt(i);
+    if(this.contactNumber.length < 3){
+      this.addButtonDisable=false
+    }
   }
 
   onChange(event) {
@@ -85,7 +92,7 @@ export class FormConditionComponent implements OnInit {
       this.formCondition.controls['mobileNumber'].enable();
       this.formVal = false;
       this.button=false
-    } else {
+    }else {
       this.formCondition.controls['optionVal'].disable();
       this.formCondition.controls['categoryName'].disable()
       this.formCondition.get('optionVal').reset();
@@ -94,7 +101,6 @@ export class FormConditionComponent implements OnInit {
       this.formCondition.controls['mobileNumber'].disable();
       this.formVal=true;
       this.button=true;
-
     }
   }
   onSubmit(){
@@ -104,7 +110,10 @@ export class FormConditionComponent implements OnInit {
     }
     alert('success')
   }
-  get mobileNumber() {
+  get mobileNumber(){
     return this.formCondition.get('mobileNumber');
  }   
+ get categoryName(){
+   return this.formCondition.get('categoryName')
+ }
 }
