@@ -56,8 +56,7 @@
                             </div>
                             <div *ngIf="f.mobileNumber.errors.pattern">
                                 Please Enter Valid Number
-                            </div>
-                           
+                            </div>   
                         </div>
                     </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -69,7 +68,6 @@
                         <i class="fa fa-plus-square" aria-hidden="true" (click)="addPhoneNumber()" data-toggle="tooltip"
                             title="Add Alternate" data-placement="right" style="cursor:pointer" *ngIf="!formVal && !addButtonDisable"></i>
                     </div>
-                    
                     <div formArrayName="telephoneNumber">
                         <div *ngFor="let mobileNumber of contactNumber.controls;let i = index;let first=first; let last=last;" [formGroupName]="i">
                             <div class="form-group">

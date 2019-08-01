@@ -30,7 +30,10 @@ const routes: Routes = [{
     path:'async',component:AsyncPipeComponent
   },{
     path:'form',component:FormConditionComponent
+  },{
+    path:'**',redirectTo:'login'
   }
+  
 ];
 
 @NgModule({
